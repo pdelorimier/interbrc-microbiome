@@ -1,6 +1,6 @@
 ---
 title: Logistics
-layout: logistics
+layout: home
 ---
 
 We are excited you have expressed interest in the Inter-BRC Microbiome Workshop to be held in Ames, Iowa on September 9 - 10.  
