@@ -21,5 +21,4 @@ We have a group reservation at [Comfort Inn and Suites Ames](https://www.choiceh
 The workshop will be held in Room 1306 Elings Hall at Iowa State University. Limited parking is available nearby and can be reserved by contacting Lorien Radmer, lradmer@iastate.edu 
 
 ### Workshop prerequisites
-Workshop prerequisites:  Some papers to read before the workshop will be provided at a later date.  
-You are expected to bring your own laptop with R and the R packages phyloseq, biostrings, microbiome, and ggplot2 installed prior to the workshop. Instructions will follow and we will have an online session to help install. 
+A laptop is required.  We will be providing some papers to read before the workshop and install directions for software used during the workshop.  Instructions will follow.
