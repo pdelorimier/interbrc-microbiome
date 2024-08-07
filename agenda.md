@@ -29,6 +29,8 @@ layout: home
 
 09:30 – 10:00: Presentation of results
 
+10:00 [Post Workshop Assessment](https://forms.gle/YuLvP1nbwYJYNgdy5)
+
 10:00 – 11:00: Write up results 
 
 11:00 – 12:00:  Next steps 
