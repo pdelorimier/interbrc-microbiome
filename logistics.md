@@ -12,7 +12,7 @@ The closest airport is DSM, which is about 45 minutes from Ames.
 
  
 ### Local Transportation
-Iowa State’s recommended airport shuttle, linked here, must be arranged ahead of time. Uber is often available, but may be unreliable. There is car rental on-site at the airport.
+Iowa State’s recommended airport shuttle, linked [here](https://www.transportation.iastate.edu/airport-shuttle), must be arranged ahead of time. Shuttle service independent of Iowa State is provided by [Executive Express](https://www.executiveexpress.biz/). Uber is often available, but may be unreliable. There is [car rental on-site at the airport](https://www.flydsm.com/at-the-airport/ground-transportation/car-rentals). Ames' local bus service is provided by [CyRide](https://www.cyride.com/home).
 
 ### Hotel
 We have a group reservation at [Comfort Inn and Suites Ames](https://www.choicehotels.com/reservations/groups/me87c9?checkInDate=2024-09-08&checkOutDate=2024-09-10&ratePlanCode=BNBTKD), with a group rate of $107 per night available for reservations placed by Friday August 9.  We are currently trying to extend this rate, but [booking directly through the hotel](https://www.choicehotels.com/iowa/ames/comfort-inn-hotels) is also very reasonable. We will provide transport from hotel to the workshop on Monday and Tuesday as needed.  If you would like a hotel within walking distance, the [Iowa House Bed & Breakfast](https://iowahouseames.com/) is a nice option and is a 0.8 mile walk to the workshop location.
