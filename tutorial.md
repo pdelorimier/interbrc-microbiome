@@ -18,5 +18,9 @@ To explore a core, we’ve identified a few key “operations” that are useful
 * You need to be able to define a core and subset the taxa wihtin that core.
 * You need to be able to compare that core to non-core data
 
+## Breakout Group Exercises (To be brainstored as a group)
 
-
+* How does the number of core taxa change based on different thresholds?  i.e., a plot of total number of core taxa based on increasing prevelance or abundance
+* How much does the core change if defined by specific feedstocks?
+* How much does the core change if looking at root vs not root?
+* At what point do you not need any more samples to see a difference in core?
