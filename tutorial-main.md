@@ -1,12 +1,8 @@
 ---
 title: "Tutorial"
-author: "Adin Howe"
+author: "Adina Howe"
 date: August 9, 2024
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ## Prepare Personal Touches
 
