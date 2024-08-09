@@ -178,8 +178,11 @@ otu.rarecurve = rarecurve(otu.rarefied)
 ```
 
 ## Other Phyloseq Tutorials
+
 [https://joey711.github.io/phyloseq/index.html](https://joey711.github.io/phyloseq/index.html)
+
 [https://micca.readthedocs.io/en/latest/phyloseq.html](https://micca.readthedocs.io/en/latest/phyloseq.html)
+
 [https://vaulot.github.io/tutorials/Phyloseq_tutorial.html](https://vaulot.github.io/tutorials/Phyloseq_tutorial.html)
 
 
