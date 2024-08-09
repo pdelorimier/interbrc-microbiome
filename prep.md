@@ -13,6 +13,8 @@ To introduce yourself to the core microbiome, we’ve selected some reading reso
 
 [“Core microbiomes for sustainable agroecosystems”](https://www.nature.com/articles/s41477-018-0139-4)
 
+["Abundance-occupancy distributions to prioritize plant core microbiome membership"](https://doi.org/10.1016/j.mib.2019.09.008)
+
 ## Hardware and Software Installations
 
 You need to have a laptop for which you can install a current version of R and RStudio.  Here are the install directions for [R Studio](https://posit.co/download/rstudio-desktop/) and R.  The instructions for this tutorial were tested on R 4.4.1, Race for Your Life.  We highly suggest installing R 4.4 or greater, else packages may not perform properly.
