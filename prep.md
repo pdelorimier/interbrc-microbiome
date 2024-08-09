@@ -5,6 +5,8 @@ layout: home
 
 Prior to the workshop, please read this material and prepare for wonderful discussions!
 
+Please also fill in this anonymous [pre-workshop assessment](https://forms.gle/1Q2qT3F799v35P8x5), which allows us to understand the skills and goals of the participants.
+
 ## What is the core microbiome?
 
 To introduce yourself to the core microbiome, we’ve selected some reading resources for discussion prior to the workshop. We will be discussing these topics in the workshop introduction.
