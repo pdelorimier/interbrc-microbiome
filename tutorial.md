@@ -27,6 +27,11 @@ To explore a core, we’ve identified a few key “operations” that are useful
 
 # Tutorial Coding Portion
 
+## Get the Data
+You will need to download the data onto your laptop.  This action requires that you KNOW where you download files when you interact with your browser -- it varies by your own personal settings.  Mine, for example, is into a "Downloads" folder.  
+
+Navigate to this [website](https://github.com/germs-lab/brc-data) and click on the Code button to download a zip file of the dataset.  Unzip it!  Wee!  This directory now contains your files and you can make it your *working directory* for your tutorial.  For example, for me it would be `~/Downlaods/brc-data`.
+
 ## Prepare Personal Touches
 
 First, set the working directory with *setwd* in R to your tutorial working directory.  You will also want to load your R libraries now.
