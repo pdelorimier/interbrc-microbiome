@@ -21,4 +21,4 @@ We are encouraging the group to make reservations at the [Comfort Inn & Suites A
 The workshop will be held in Room 1306 Elings Hall at Iowa State University. Limited parking is available nearby and can be reserved by contacting Lorien Radmer, lradmer@iastate.edu 
 
 ### Workshop prerequisites
-A laptop is required.  We will be providing some papers to read before the workshop and install directions for software used during the workshop. Please fill in this anonymous [pre-workshop assessment](https://forms.gle/1Q2qT3F799v35P8x5), which allows us to understand the skills of the participants and also your goals.  The workshop will also require some prerequisites. [Prerequisites can be found here](https://www.germslab.org/interbrc-microbiome/prep.html)
+A laptop is required.  We have provided some papers to read before the workshop and directions for installing software used during the workshop in the [preparation section](https://www.germslab.org/interbrc-microbiome/prep.html) of this site. Please also fill in this anonymous [pre-workshop assessment](https://forms.gle/1Q2qT3F799v35P8x5), which allows us to understand the skills and goals of the participants.
