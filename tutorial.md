@@ -136,51 +136,55 @@ length(myTaxa)
 mycore = prune_taxa(myTaxa, ps)
 ```
 
-## Core vs not core
+### Task 4
+Choose a way to define a core.  Can you create a phyloseq object with taxa that meet your prevalance and abundance thresholds?  You can either subset from teh core phyloseq object or from the larger phyloseq object.  [Hint:  `prune_taxa`]
+
+## Adding a label of core or not core to your table
+
+First, let's create two lists of taxa.  One will represent "core taxa" and the other "other taxa".
 
 ```
-myTaxa2 = names(sort(taxa_sums(ps), decreasing = TRUE)[1:100])
-subset_ps = prune_taxa(myTaxa2, ps)
-prev = apply(X = otu_table(subset_ps),
+other_taxa = names(sort(taxa_sums(ps), decreasing = TRUE)[1:100])
+other_ps = prune_taxa(other_taxa, ps)
+prev = apply(X = otu_table(other_ps),
                      MARGIN = 2,
                      FUN = function(x){sum(x > 0)})
-dim(sample_data(ex2))[1]
-dat2 = data.frame(Prevalence = prev, Prop_Prev = prev/dim(sample_data(ex2))[1],
-                           TotalAbundance = taxa_sums(ex2),
-                           tax_table(ex2))
+dim(sample_data(other_ps))[1]
+data_table = data.frame(Prevalence = prev, Prop_Prev = prev/dim(sample_data(other_ps))[1],
+                           TotalAbundance = taxa_sums(other_ps),
+                           tax_table(other_ps))
+threshold_prev = 0.2
+threshold_abund = 2000
+prev_cutoff <- core_data[core_data$Prop_Prev > threshold_prev,] # Only the prevalance
+prev_cutoff
+abund_cutoff <- prev_cutoff[prev_cutoff$TotalAbundance > threshold_abund,]
+core_taxa <- rownames(abund_cutoff)
+data_table$core_id <- ifelse(rownames(data_table) %in% core_taxa, "core", "other")
+```
 
-myTaxa #This is the select list to label as core
-myTaxa2 #This is the NOT core
-dat2$core <- ifelse(rownames(dat2) %in% myTaxa, "core", "other")
-ggplot(data = dat2, aes(x = TotalAbundance, y = Prevalence, color=core)) +
+### Task 5 
+
+Make a prevalence abundance plot of the core and non-core.
+
+Hint:
+
+```
+ggplot(data = data_table, aes(x = ___, y = ___, color=core_id)) +
   geom_point() +
   theme_minimal() +
   labs(title = "Scatter Plot of Prevalence vs Total Abundance",
        x = "Prevalence",
        y = "Total Abundance")
-```
+```       
 
-## Getting the core as a phyloseq object
-```
-threshold_prev = 0.2
-threshold_abund = 2000
-prev_cutoff <- dat2[dat2$Prop_Prev > threshold_prev,] # Only the prevalance
-prev_cutoff$Prop_Prev
-abund_cutoff <- prev_cutoff[prev_cutoff$TotalAbundance > threshold_abund,]
-myTaxa <- rownames(abund_cutoff)
-length(myTaxa)
-```
+## Phyloseq is now your playground
 
-### Task 4
-Can you create a phyloseq object with taxa that meet your prevalance and abundance thresholds?  You can either subset from teh core phyloseq object or from the larger phyloseq object.  [Hint:  `prune_taxa`]
+Now that you can create a phyloseq object of your core, you can do a lot of things with microbiome packages.  Phyloseq is a great place to start.
 
-## Subset by Metadata
-```
-ps_poplar <- subset_samples(ps, crop == "poplar")
-ps.rarefied <- rarefy_even_depth(ex1, rngseed=1, sample.size=5, replace=F)
-otu.rarefied <- as.data.frame(otu_table(ps.rarefied))
-otu.rarecurve = rarecurve(otu.rarefied)
-```
+### Task 6
+
+Make a bar chart of the of phylogenies in the core.  You can see this [tutorial](https://joey711.github.io/phyloseq/plot_bar-examples.html)
+
 
 ## Other Phyloseq Tutorials
 
