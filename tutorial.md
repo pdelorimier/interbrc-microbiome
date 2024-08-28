@@ -5,6 +5,8 @@ layout: home
 
 ## The Data
 
+In class, Adina will introduce 16s rRNA amplicon sequencing.  There are several great review papers on the topic but to get you started here is [one](https://journals.asm.org/doi/10.1128/spectrum.00563-23).
+
 Prior to the workshop, we obtained a small, representative dataset from each BRC.  As a result, we have SSU sequencing datasets from corn, miscanthus, poplar, switchgrass, and sorghum.  These sequences are from different regions of the 16S rRNA gene, depending on the project source.  To check for this, I aligned these sequences to an E. coli 16S SSU gene reference.  I found that CABBI sequences represented region 533-668 (R1), and 783-644 (R2); CBI was 515-751 (R1) and 804-557 (R2); GLBRC was 514-798 (R1) and 804-517 (R2); and JBEI was 514-750 (R1) and 804-559 (R2).  These are all overlapping, which was helpful but different lengths.  I trimmed everything on the left side (but CABBI) by 19 bp, which would make the R1 and R2 similar starting points.  These starting points are “on average”, so we’re also “doing our best here”.  The goal is to get the sequences as close to simlar as we can.  For each dataset, I think trimmed, quality controlled, and merged reads.  I took only merged reads from ALL BRCs and then clustered them at 100% identity with CD-HIT using this [script](https://github.com/dsamoht/utility/tree/main?tab=readme-ov-file#collapse_asvpy).  This resulted in a merged file that we will use for this tutorial.
 
 For this tutorial, we are assuming that your data has been processed through dada2 and then imported into phyloseq as a phyloseq object.  We are going to go through the pieces of phyloseq objects in the tutorial but you can read more about these details [here](https://joey711.github.io/phyloseq/import-data.html).
@@ -27,6 +29,8 @@ To explore a core, we’ve identified a few key “operations” that are useful
 
 # Tutorial Coding Portion
 
+The objective of this tutorial is to be able to identify a core with the criteria of ranked abundance and to evaluate its distribution of prevalence and abundance compared to 'non-core' taxa.
+
 ## Get the Data
 You will need to download the data onto your laptop.  This action requires that you KNOW where you download files when you interact with your browser -- it varies by your own personal settings.  Mine, for example, is into a "Downloads" folder.  
 
@@ -43,45 +47,34 @@ library(phyloseq)
 ```
 
 ## Load Data
+I have loaded all the data into a phyloseq object to save time.  The phyloseq object has 4 parts, and you can see that by executing this code.
 
 ```
-otu_csv <- read.csv("abundance-table-final.csv", header=TRUE)
-rownames(otu_csv) <- otu_csv[,1]
-otu_csv[,1] <- NULL
-otu <- otu_table(as.matrix(otu_csv), taxa_are_rows = FALSE)
-taxa_csv <- read.csv("tax-final.csv", header=TRUE)
-rownames(taxa_csv) <- taxa_csv[,1]
-taxa_csv[,1] <- NULL
-tax <- tax_table(as.matrix(taxa_csv))
-meta <- read.csv("meta.txt", header=TRUE, sep="\t")
-rownames(meta) <- meta$X
-meta$X <- NULL
-meta_phy <- sample_data(meta)
-phy <- phyloseq(tax, otu, meta_phy)
+ps <- readRDS('phyloseq-object.rds')
+ps
+otu_table(ps)[1:5, 1:5]  #Note that this code prints the first 5 rows and 5 columns of the matrix
+tax_table(ps)[1:5]
+sample_data(ps)[1:15]
 ```
 
-
-## Rename ASVs to be not crazy long 
-
-```
-dna <- Biostrings::DNAStringSet(taxa_names(phy))
-names(dna) <- taxa_names(phy)
-ps <- merge_phyloseq(phy, dna)
-taxa_names(ps) <- paste0("ASV", seq(ntaxa(ps)))
-```
+### Task 1. 
+With a partner, discuss the different contents of the phyloseq object.
 
 ## Explore Data 
+You can sort and subset by different things, like the total observations of an ASV.  Some of the functions you are using here in phyloseq include `taxa_sums` and `names`.  You are also using R functions like `sort`.
 
 ```
-#Understanding data objects in phyloseq
-ps
-otu_table(ps)[1:5, 1:5]
-tax_table(ps)[1:5]
-sample_data(ps)[1:5]
+taxa_sums(ps)
+sort(taxa_sums(ps), decreasing = TRUE)
+names(sort(taxa_sums(ps), decreasing = TRUE)[1:10]
+core_taxa_names <- names(sort(taxa_sums(ps), decreasing = TRUE)[1:10])
+```
 
-#You can sort and subset by different things, like the total sum in a sample
-myTaxa = names(sort(taxa_sums(ps), decreasing = TRUE)[1:10])
-ex1 = prune_taxa(myTaxa, ps)
+### Task 2.
+With a new partner, discuss the what the above code accomplished.
+
+
+ps_core = prune_taxa(myTaxa, ps)
 taxa_sums(ex1) #sum of all observations of each taxa
 sample_sums(ex1) #sum of all taxa observe in each sample
 
