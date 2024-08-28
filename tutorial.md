@@ -60,70 +60,61 @@ sample_data(ps)[1:15]
 ### Task 1. 
 With a partner, discuss the different contents of the phyloseq object.
 
-## Explore Data 
-You can sort and subset by different things, like the total observations of an ASV.  Some of the functions you are using here in phyloseq include `taxa_sums` and `names`.  You are also using R functions like `sort`.
+## Explore Data and subsetting the Core
+You can sort and subset by different things, like the total observations of an ASV.  Some of the functions you are using here in phyloseq include `taxa_sums` and `names`.  You are also using R functions like `sort`.  You can google many of these functions but here is the [manual for phyloseq](https://bioconductor.org/packages/release/bioc/manuals/phyloseq/man/phyloseq.pdf)
 
 ```
 taxa_sums(ps)
 sort(taxa_sums(ps), decreasing = TRUE)
-names(sort(taxa_sums(ps), decreasing = TRUE)[1:10]
+names(sort(taxa_sums(ps), decreasing = TRUE)[1:10])
 core_taxa_names <- names(sort(taxa_sums(ps), decreasing = TRUE)[1:10])
 ```
 
+```
+ps_core = prune_taxa(core_taxa_names, ps)
+taxa_sums(ps_core) #sum of all observations of each taxa
+sample_sums(ps_core) #sum of all taxa observe in each sample
+```
+
 ### Task 2.
-With a new partner, discuss the what the above code accomplished.
+With a new partner, discuss the what the above code accomplished.  What did `sample_sums` do?
 
+## Making another "core" phyloseq object
+You now have a phyloseq object called `ps_core`, which is a type of core defined by the 10 most abundant taxa.  You can also define cores other ways.
 
-ps_core = prune_taxa(myTaxa, ps)
-taxa_sums(ex1) #sum of all observations of each taxa
-sample_sums(ex1) #sum of all taxa observe in each sample
+#You can filter taxa by abundance - where the taxa have an average abundance among samples over 100 observations
 
-#You can transform from total observations to relative abundances
-pseq.rel <- microbiome::transform(ex1, "compositional")
-taxa_sums(pseq.rel)
+```
+ps_core_alt <- filter_taxa(ps, function(x) mean(x) > 100, TRUE)
+```
 
-#You can make rarefaction curves
-ps.rarefied <- rarefy_even_depth(ex1, rngseed=1, sample.size=15, replace=F)
-otu.rarefied <- as.data.frame(otu_table(ps.rarefied))
-otu.rarefied
-otu.rarecurve = rarecurve(otu.rarefied)
+## Let's put things in a table format that is readable for you - this will merge the abundance and taxa information
 
-#You can filter taxa by abundance
-filtered_ps <- filter_taxa(ex1, function(x) mean(x) > 100, TRUE)
-
+```
 #You can add prevelance and abundance data to a dataframe
-prevelance = apply(X = otu_table(ex1),
+prevalance = apply(X = otu_table(ps_core),
                      MARGIN = 2,
                      FUN = function(x){sum(x > 0)})
-tot_samples <- dim(sample_data(ex1))[1]
-dat = data.frame(Prevalence = prevelance, Prop_Prev = prevelance/tot_samples,
-                          TotalAbundance = taxa_sums(ex1),
-                          tax_table(ex1))
+tot_samples <- dim(sample_data(ps_core))[1] #this is the total number of samples
+core_data = data.frame(Prevalence = prevalance, Prop_Prev = prevalance/tot_samples,
+                          TotalAbundance = taxa_sums(ps_core),
+                          tax_table(ps_core))
 
 #You can explore distributions
 library(ggplot2)
-ggplot(data = dat, aes(x = Prevalence)) +
+ggplot(data = core_data, aes(x = Prevalence)) +
   geom_histogram(binwidth = 1, fill = "blue", color = "black") +
   theme_minimal() +
   labs(title = "Distribution of Prevalence",
        x = "Prevalence",
        y = "Frequency")
+```
 
-ggplot(data = dat, aes(x = Prop_Prev)) +
-  geom_histogram(binwidth = 0.1, fill = "blue", color = "black") +
-  theme_minimal() +
-  labs(title = "Distribution of Prevalence",
-       x = "Prevalence",
-       y = "Frequency")
+### Task 3.
+With a partner, make a histogram of total abundance -or- proportional prevalence.  Can you make a plot of abundance vs prevelance?  There is a hint below.
 
-ggplot(data = dat, aes(x = TotalAbundance)) +
-  geom_histogram(binwidth = 1000, fill = "blue", color = "black") +
-  theme_minimal() +
-  labs(title = "Distribution of Prevalence",
-       x = "Abundance",
-       y = "Frequency")
-
-ggplot(data = dat, aes(x = TotalAbundance, y = Prop_Prev)) +
+```
+ggplot(data = dat, aes(x = ___, y = ___)) +
   geom_point() +
   theme_minimal() +
   labs(title = "Scatter Plot of Prevalence vs Total Abundance",
