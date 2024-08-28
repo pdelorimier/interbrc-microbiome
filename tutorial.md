@@ -122,6 +122,20 @@ ggplot(data = dat, aes(x = ___, y = ___)) +
        y = "Total Abundance")
 ```
 
+## Other Metrics to Identify a core
+You can get a list of ASVs based on prevalence or abundance.
+
+```
+threshold_prev = 0.2
+threshold_abund = 2000
+prev_cutoff <- core_data[core_data$Prop_Prev > threshold_prev,] # Only the prevalance
+prev_cutoff
+abund_cutoff <- prev_cutoff[prev_cutoff$TotalAbundance > threshold_abund,]
+taxa_to_filter <- rownames(abund_cutoff)
+length(myTaxa)
+mycore = prune_taxa(myTaxa, ps)
+```
+
 ## Core vs not core
 
 ```
@@ -155,8 +169,10 @@ prev_cutoff$Prop_Prev
 abund_cutoff <- prev_cutoff[prev_cutoff$TotalAbundance > threshold_abund,]
 myTaxa <- rownames(abund_cutoff)
 length(myTaxa)
-mycore = prune_taxa(myTaxa, ps)
 ```
+
+### Task 4
+Can you create a phyloseq object with taxa that meet your prevalance and abundance thresholds?  You can either subset from teh core phyloseq object or from the larger phyloseq object.  [Hint:  `prune_taxa`]
 
 ## Subset by Metadata
 ```
