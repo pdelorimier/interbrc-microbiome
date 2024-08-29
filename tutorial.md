@@ -133,7 +133,7 @@ prev_cutoff
 abund_cutoff <- prev_cutoff[prev_cutoff$TotalAbundance > threshold_abund,]
 taxa_to_filter <- rownames(abund_cutoff)
 length(myTaxa)
-mycore = prune_taxa(myTaxa, ps)
+mycore = prune_taxa(taxa_to_filter, ps)
 ```
 
 ### Task 4
